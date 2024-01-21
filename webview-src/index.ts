@@ -1,5 +1,5 @@
 import { invoke } from '@tauri-apps/api/core'
 
 export async function execute() {
-  await invoke('plugin:python|execute')
+  return await invoke('plugin:python|execute')
 }
