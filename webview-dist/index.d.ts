@@ -1,1 +1,1 @@
-export declare function execute(): Promise<unknown>;
+export declare function importModule(modulePath: string): Promise<unknown>;

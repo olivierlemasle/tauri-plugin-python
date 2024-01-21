@@ -1,13 +1,9 @@
-use tauri::{command, AppHandle, Runtime, State, Window};
+use tauri::{command, AppHandle, Runtime};
 
-use crate::{MyState, Result};
+use crate::{PythonExt, Result};
 
 #[command]
-pub(crate) async fn execute<R: Runtime>(
-    _app: AppHandle<R>,
-    _window: Window<R>,
-    state: State<'_, MyState>,
-) -> Result<String> {
-    state.0.lock().unwrap().insert("key".into(), "value".into());
+pub(crate) async fn import<R: Runtime>(app: AppHandle<R>, module_path: String) -> Result<String> {
+    app.python().import(module_path)?;
     Ok("success".to_string())
 }

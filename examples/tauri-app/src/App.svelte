@@ -1,16 +1,23 @@
 <script>
-  import Greet from './lib/Greet.svelte'
-  import { execute } from 'tauri-plugin-python-api'
+  import Greet from "./lib/Greet.svelte";
+  import { importModule } from "tauri-plugin-python-api";
 
-	let response = ''
+  let response = "";
 
-	function updateResponse(returnValue) {
-		response += `[${new Date().toLocaleTimeString()}]` + (typeof returnValue === 'string' ? returnValue : JSON.stringify(returnValue)) + '<br>'
-	}
+  function updateResponse(returnValue) {
+    response +=
+      `[${new Date().toLocaleTimeString()}] ` +
+      (typeof returnValue === "string"
+        ? returnValue
+        : JSON.stringify(returnValue)) +
+      "<br>";
+  }
 
-	function _execute() {
-		execute().then(updateResponse).catch(updateResponse)
-	}
+  function _execute() {
+    importModule("../python/example.py")
+      .then(updateResponse)
+      .catch(updateResponse);
+  }
 </script>
 
 <main class="container">
@@ -28,19 +35,16 @@
     </a>
   </div>
 
-  <p>
-    Click on the Tauri, Vite, and Svelte logos to learn more.
-  </p>
+  <p>Click on the Tauri, Vite, and Svelte logos to learn more.</p>
 
   <div class="row">
     <Greet />
   </div>
 
   <div>
-    <button on:click="{_execute}">Execute</button>
+    <button on:click={_execute}>Execute</button>
     <div>{@html response}</div>
   </div>
-
 </main>
 
 <style>

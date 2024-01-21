@@ -1,5 +1,5 @@
-import { invoke } from '@tauri-apps/api/core'
+import { invoke } from "@tauri-apps/api/core";
 
-export async function execute() {
-  return await invoke('plugin:python|execute')
+export async function importModule(modulePath: string) {
+  return await invoke("plugin:python|import", { modulePath });
 }

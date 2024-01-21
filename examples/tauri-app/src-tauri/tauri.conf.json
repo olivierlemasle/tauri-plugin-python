@@ -26,7 +26,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.tauri.dev",
+      "identifier": "io.github.olivierlemasle.tauri-plugin-python.example",
       "longDescription": "",
       "macOS": {
         "entitlements": null,
@@ -35,7 +35,7 @@
         "providerShortName": null,
         "signingIdentity": null
       },
-      "resources": [],
+      "resources": ["../python/*"],
       "shortDescription": "",
       "targets": "all",
       "windows": {
