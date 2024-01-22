@@ -1,0 +1,2 @@
+*.config.js -linguist-detectable
+/examples/** -linguist-documentation
