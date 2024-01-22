@@ -26,6 +26,22 @@ malachite-bigint = { version = "=0.1.0" }
 malachite-q = "=0.3.2"
 malachite-base = "=0.3.2"
 
+# cf https://github.com/RustPython/RustPython/issues/5132
+[target.'cfg(windows)'.dependencies.winapi]
+version = "0.3.9"
+features = [
+    "winsock2",
+    "ws2def",
+    "std",
+    "wincrypt",
+    "fileapi",
+    "impl-default",
+    "vcruntime",
+    "ifdef",
+    "netioapi",
+    "profileapi",
+]
+
 [features]
 default = ["freeze-stdlib"]
 freeze-stdlib = [
