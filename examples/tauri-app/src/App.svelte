@@ -4,19 +4,19 @@
 
   let response = "";
 
-  function updateResponse(returnValue) {
+  function updateResponse() {
+    response += `[${new Date().toLocaleTimeString()}] OK <br>`;
+  }
+
+  function handleError(err) {
     response +=
-      `[${new Date().toLocaleTimeString()}] ` +
-      (typeof returnValue === "string"
-        ? returnValue
-        : JSON.stringify(returnValue)) +
-      "<br>";
+      `[${new Date().toLocaleTimeString()}] ` + JSON.stringify(err) + "<br>";
   }
 
   function _execute() {
     importModule("../python/example.py")
       .then(updateResponse)
-      .catch(updateResponse);
+      .catch(handleError);
   }
 </script>
 

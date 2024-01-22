@@ -11,3 +11,4 @@ yarn.lock
 /.tauri
 /target
 node_modules/
+__pycache__
