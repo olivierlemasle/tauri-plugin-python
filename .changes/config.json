@@ -1,5 +1,5 @@
 {
-  "gitSiteUrl": "https://www.github.com/your-org/tauri-plugin-python/",
+  "gitSiteUrl": "https://github.com/olivierlemasle/tauri-plugin-python/",
   "pkgManagers": {
     "rust": {
       "version": true,

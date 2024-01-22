@@ -1,21 +1,22 @@
 name: covector version or publish
 on:
-  push:
-    branches:
-    - dev
+  workflow_dispatch:
+  # push:
+  #   branches:
+  #     - main
 
 jobs:
   covector:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: 18
-          registry-url: 'https://registry.npmjs.org'
+          node-version: 20
+          registry-url: "https://registry.npmjs.org"
 
       - name: cargo login
         run: cargo login ${{ secrets.ORG_CRATES_IO_TOKEN }}
@@ -30,7 +31,7 @@ jobs:
         id: covector
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          command: 'version-or-publish'
+          command: "version-or-publish"
           createRelease: true
 
       - name: Create Pull Request With Versions Bumped
@@ -43,4 +44,3 @@ jobs:
           commit-message: "apply version updates"
           labels: "version updates"
           body: ${{ steps.covector.outputs.change }}
-
