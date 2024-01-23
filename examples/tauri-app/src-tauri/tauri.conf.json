@@ -1,24 +1,17 @@
 {
   "build": {
-    "beforeDevCommand": "yarn dev",
-    "beforeBuildCommand": "yarn build",
+    "beforeDevCommand": "pnpm dev",
+    "beforeBuildCommand": "pnpm build",
     "devPath": "http://localhost:1420",
-    "distDir": "../dist",
-    "withGlobalTauri": false
+    "distDir": "../dist"
   },
   "package": {
-    "productName": "tauri-app",
+    "productName": "tauri-plugin-python-example",
     "version": "0.0.0"
   },
   "tauri": {
     "bundle": {
       "active": true,
-      "category": "DeveloperTool",
-      "copyright": "",
-      "deb": {
-        "depends": []
-      },
-      "externalBin": [],
       "icon": [
         "icons/32x32.png",
         "icons/128x128.png",
@@ -27,22 +20,7 @@
         "icons/icon.ico"
       ],
       "identifier": "io.github.olivierlemasle.tauri-plugin-python.example",
-      "longDescription": "",
-      "macOS": {
-        "entitlements": null,
-        "exceptionDomain": "",
-        "frameworks": [],
-        "providerShortName": null,
-        "signingIdentity": null
-      },
-      "resources": ["../python/*"],
-      "shortDescription": "",
-      "targets": "all",
-      "windows": {
-        "certificateThumbprint": null,
-        "digestAlgorithm": "sha256",
-        "timestampUrl": ""
-      }
+      "resources": ["../python/*"]
     },
     "security": {
       "csp": null
@@ -50,10 +28,10 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 600,
         "resizable": true,
-        "title": "tauri-app",
-        "width": 800
+        "title": "tauri-plugin-python example",
+        "width": 800,
+        "height": 600
       }
     ]
   }
