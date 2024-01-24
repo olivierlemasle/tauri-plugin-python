@@ -1,4 +1,4 @@
-name: Format
+name: Format and Lint
 
 on:
   push:
@@ -27,3 +27,24 @@ jobs:
 
       - name: Check format for example
         run: cargo fmt --manifest-path=examples/tauri-app/src-tauri/Cargo.toml --all -- --check
+
+  clippy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y webkit2gtk-4.1
+
+      - name: Install clippy with stable toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy
+
+      - uses: Swatinem/rust-cache@v2
+
+      - name: Run clippy
+        run: cargo clippy --all-targets --all-features -- -D warnings
