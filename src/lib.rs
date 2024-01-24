@@ -6,15 +6,14 @@ use tauri::{
 
 use std::sync::Mutex;
 
+pub use error::{Error, Result};
 pub use models::*;
-pub use python::*;
+use python::*;
 
 mod commands;
 mod error;
 mod models;
 mod python;
-
-pub use error::{Error, Result};
 
 pub struct Python<R: Runtime> {
     app_handle: AppHandle<R>,
@@ -42,6 +41,16 @@ impl<R: Runtime> Python<R> {
         let interpreter = self.app_handle.state::<State>().inner().0.lock().unwrap();
         interpreter.import(&dir_path, &module_name)
     }
+
+    pub fn call_function(
+        &self,
+        module_name: &str,
+        function_name: &str,
+        args: Vec<serde_json::Value>,
+    ) -> Result<serde_json::Value> {
+        let interpreter = self.app_handle.state::<State>().inner().0.lock().unwrap();
+        interpreter.call_function(module_name, function_name, args)
+    }
 }
 
 #[derive(Default)]
@@ -61,7 +70,10 @@ impl<R: Runtime, T: Manager<R>> crate::PythonExt<R> for T {
 /// Initializes the plugin.
 pub fn init<R: Runtime>() -> TauriPlugin<R> {
     Builder::new("python")
-        .invoke_handler(tauri::generate_handler![commands::import])
+        .invoke_handler(tauri::generate_handler![
+            commands::import,
+            commands::call_function
+        ])
         .setup(|app, _api| {
             let python = Python {
                 app_handle: app.clone(),

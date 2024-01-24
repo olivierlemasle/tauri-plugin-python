@@ -20,7 +20,7 @@
         "icons/icon.ico"
       ],
       "identifier": "io.github.olivierlemasle.tauri-plugin-python.example",
-      "resources": ["../python/*"]
+      "resources": ["../../../test_assets/*"]
     },
     "security": {
       "csp": null

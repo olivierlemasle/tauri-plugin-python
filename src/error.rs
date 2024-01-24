@@ -2,13 +2,16 @@ use serde::{ser::Serializer, Serialize};
 
 pub type Result<T> = std::result::Result<T, Error>;
 
-#[derive(Debug, PartialEq, thiserror::Error)]
+#[derive(Debug, thiserror::Error)]
 pub enum Error {
     #[error("Python exception: {0:?}")]
     Python(String),
 
     #[error("Cannot resolve resource file {0}")]
     Resolve(String),
+
+    #[error("JSON error: {0:?}")]
+    Json(#[from] serde_json::Error),
 }
 
 impl Serialize for Error {

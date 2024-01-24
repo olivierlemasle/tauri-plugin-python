@@ -16,16 +16,15 @@
 
 .container {
   margin: 0;
-  padding-top: 10vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  text-align: center;
+  justify-content: left;
+  text-align: left;
 }
 
 .row {
   display: flex;
-  justify-content: center;
+  justify-content: left;
 }
 
 a {
@@ -46,6 +45,7 @@ input,
 button {
   border-radius: 8px;
   border: 1px solid transparent;
+  margin: 5px;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
@@ -54,11 +54,11 @@ button {
   background-color: #ffffff;
   transition: border-color 0.25s;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  outline: none;
 }
 
 button {
   cursor: pointer;
-  margin: 0 5px 0;
 }
 
 button:hover {
@@ -69,7 +69,6 @@ button:active {
   background-color: #e8e8e8;
 }
 
-input,
-button {
-  outline: none;
+p {
+  margin: 0;
 }
