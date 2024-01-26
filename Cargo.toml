@@ -2,7 +2,9 @@
 name = "tauri-plugin-python"
 version = "0.0.0"
 authors = ["Olivier Lemasle"]
-description = ""
+description = "A Tauri plugin to use Python from Tauri apps"
+license = "Apache-2.0 OR MIT"
+repository = "https://github.com/olivierlemasle/tauri-plugin-python"
 edition = "2021"
 rust-version = "1.70"
 exclude = ["/examples", "/webview-dist", "/webview-src", "/node_modules"]

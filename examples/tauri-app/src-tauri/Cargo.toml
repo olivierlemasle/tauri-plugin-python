@@ -1,10 +1,9 @@
 [package]
 name = "tauri-app"
 version = "0.0.0"
-description = "A Tauri App"
-authors = ["you"]
-license = ""
-repository = ""
+description = "tauri-plugin-python example application"
+authors = ["Olivier Lemasle"]
+license = "Apache-2.0 OR MIT"
 edition = "2021"
 rust-version = "1.70"
 
