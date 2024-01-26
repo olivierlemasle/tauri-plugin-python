@@ -7,7 +7,18 @@ license = "Apache-2.0 OR MIT"
 repository = "https://github.com/olivierlemasle/tauri-plugin-python"
 edition = "2021"
 rust-version = "1.70"
-exclude = ["/examples", "/webview-dist", "/webview-src", "/node_modules"]
+exclude = [
+    "/.changes",
+    "/.github",
+    "/.gitattributes",
+    "/.gitignore",
+    "/examples",
+    "/webview-dist",
+    "/webview-src",
+    "/node_modules",
+    "/package.json",
+    "/pnpm-lock.yaml",
+]
 
 [dependencies]
 tauri = { version = "2.0.0-alpha.21" }

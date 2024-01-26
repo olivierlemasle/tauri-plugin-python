@@ -22,5 +22,11 @@
   "dependencies": {
     "@tauri-apps/api": "^2.0.0-alpha.11",
     "tslib": "^2.1.0"
-  }
+  },
+  "files": [
+    "webview-dist",
+    "README.md",
+    "LICENSE_APACHE-2.0",
+    "LICENSE_MIT"
+  ]
 }
