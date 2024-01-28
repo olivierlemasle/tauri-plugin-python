@@ -1,7 +1,15 @@
-div.error {
-  color: red;
+.App {
+  margin: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  text-align: left;
 }
 
-p.other {
-  padding-left: 1em;
+.App .panel {
+  min-width: 35em;
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
 }
