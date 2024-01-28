@@ -141,16 +141,21 @@ mod tests {
         let result = interpreter.call_function("example", "multiply", args)?;
         assert_eq!(result, json!(6));
 
-        let args = vec![json!(3), json!("bar")];
+        let args = vec![json!(3), json!("spam ")];
         let result = interpreter.call_function("example", "multiply", args)?;
-        assert_eq!(result, json!("barbarbar"));
+        assert_eq!(result, json!("spam spam spam "));
 
-        let args = vec![json!(2), json!("foo")];
+        let args = vec![];
         let result = interpreter.call_function("example", "create_dict", args)?;
-        assert_eq!(
-            result,
-            json!({"first": 2, "second": "foo", "array": [2, "foo"]})
-        );
+        assert_eq!(result, json!({"first": "a", "second": null, "others": []}));
+
+        let args = vec![json!(1), json!(2), json!(3), json!(4)];
+        let result = interpreter.call_function("example", "create_dict", args)?;
+        assert_eq!(result, json!({"first": 1, "second": 2, "others": [3, 4]}));
+
+        let inc_result1 = interpreter.call_function("example", "inc", vec![])?;
+        let inc_result2 = interpreter.call_function("example", "inc", vec![])?;
+        assert_ne!(inc_result1, inc_result2);
 
         Ok(())
     }
