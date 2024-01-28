@@ -13,10 +13,16 @@ impl Interpreter {
         Self(interpreter)
     }
 
-    pub fn import(&self, dir_path: &str, module_name: &str) -> Result<()> {
+    pub fn add_to_sys_path(&self, dir_path: &str) -> Result<()> {
         self.0.enter(|vm| {
             vm.insert_sys_path(vm.new_pyobj(dir_path)).to_err(vm)?;
 
+            Ok(())
+        })
+    }
+
+    pub fn import(&self, module_name: &str) -> Result<()> {
+        self.0.enter(|vm| {
             let module_name = PyStr::new_ref(module_name, &vm.ctx);
             let _module = vm.import(&module_name, None, 0).to_err(vm)?;
             Ok(())
@@ -94,39 +100,38 @@ mod tests {
 
     #[test]
     fn import() -> crate::Result<()> {
-        Interpreter::new().import("test_assets", "example")
+        let interpreter = Interpreter::new();
+        interpreter.add_to_sys_path("test_assets")?;
+        interpreter.import("example")
     }
 
     #[test]
     fn import_wrong_path() {
-        if let Err(Error::Python(msg)) = Interpreter::new().import("", "example") {
-            assert!(msg.contains("ModuleNotFoundError"), "Got {}", msg);
-        } else {
-            panic!("should return Error::Python");
-        }
-    }
-
-    #[test]
-    fn import_wrong_module() {
-        if let Err(Error::Python(msg)) = Interpreter::new().import("test_assets", "foo") {
-            assert!(msg.contains("ModuleNotFoundError"), "Got {}", msg);
-        } else {
-            panic!("should return Error::Python");
-        }
-    }
-
-    #[test]
-    fn import_cached_module() -> crate::Result<()> {
         let interpreter = Interpreter::new();
-        interpreter.import("test_assets", "example")?;
-        interpreter.import("", "example")?;
-        Ok(())
+        if let Err(Error::Python(msg)) = interpreter.import("example") {
+            assert!(msg.contains("ModuleNotFoundError"), "Got {}", msg);
+        } else {
+            panic!("should return Error::Python");
+        }
+    }
+
+    #[test]
+    fn import_wrong_module() -> crate::Result<()> {
+        let interpreter = Interpreter::new();
+        interpreter.add_to_sys_path("test_assets")?;
+        if let Err(Error::Python(msg)) = interpreter.import("foo") {
+            assert!(msg.contains("ModuleNotFoundError"), "Got {}", msg);
+            Ok(())
+        } else {
+            panic!("should return Error::Python");
+        }
     }
 
     #[test]
     fn call_function() -> crate::Result<()> {
         let interpreter = Interpreter::new();
-        interpreter.import("test_assets", "example")?;
+        interpreter.add_to_sys_path("test_assets")?;
+        interpreter.import("example")?;
 
         let args = vec![];
         let result = interpreter.call_function("example", "foo", args)?;
@@ -154,7 +159,8 @@ mod tests {
     #[should_panic]
     fn nonexiting_function() {
         let interpreter = Interpreter::new();
-        interpreter.import("test_assets", "example").unwrap();
+        interpreter.add_to_sys_path("test_assets").unwrap();
+        interpreter.import("example").unwrap();
         interpreter
             .call_function("example", "abcd", vec![])
             .unwrap();
@@ -164,7 +170,8 @@ mod tests {
     #[should_panic]
     fn not_a_function() {
         let interpreter = Interpreter::new();
-        interpreter.import("test_assets", "example").unwrap();
+        interpreter.add_to_sys_path("test_assets").unwrap();
+        interpreter.import("example").unwrap();
         interpreter.call_function("example", "bar", vec![]).unwrap();
     }
 
@@ -172,7 +179,8 @@ mod tests {
     #[should_panic]
     fn wrong_args() {
         let interpreter = Interpreter::new();
-        interpreter.import("test_assets", "example").unwrap();
+        interpreter.add_to_sys_path("test_assets").unwrap();
+        interpreter.import("example").unwrap();
         interpreter
             .call_function("example", "multiply", vec![json!(1)])
             .unwrap();

@@ -3,8 +3,16 @@ use tauri::{command, AppHandle, Runtime};
 use crate::{PythonExt, Result};
 
 #[command]
-pub(crate) async fn import<R: Runtime>(app: AppHandle<R>, module_path: String) -> Result<()> {
-    app.python().import(module_path)
+pub(crate) async fn add_resource_path_to_sys_path<R: Runtime>(
+    app: AppHandle<R>,
+    path: &str,
+) -> Result<()> {
+    app.python().add_resource_path_to_sys_path(path)
+}
+
+#[command]
+pub(crate) async fn import<R: Runtime>(app: AppHandle<R>, module_name: &str) -> Result<()> {
+    app.python().import(module_name)
 }
 
 #[command]

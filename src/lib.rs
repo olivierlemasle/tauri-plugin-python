@@ -4,7 +4,7 @@ use tauri::{
     AppHandle, Manager, Runtime,
 };
 
-use std::sync::Mutex;
+use std::{fs, sync::Mutex};
 
 pub use error::{Error, Result};
 pub use models::*;
@@ -20,26 +20,25 @@ pub struct Python<R: Runtime> {
 }
 
 impl<R: Runtime> Python<R> {
-    pub fn import(&self, path: String) -> Result<()> {
-        let (dir_path, module_name) = self
+    pub fn add_resource_path_to_sys_path(&self, path: &str) -> Result<()> {
+        let resolved = self
             .app_handle
             .path()
-            .resolve(&path, BaseDirectory::Resource)
-            .as_ref()
-            .map(|p| {
-                let dir_path = p
-                    .parent()
-                    .map(|p| p.to_string_lossy().to_string())
-                    .unwrap_or_default();
+            .resolve(path, BaseDirectory::Resource)
+            .map_err(|_| Error::Resolve(path.to_string()))?;
 
-                let module_name = p.file_stem().unwrap().to_string_lossy().to_string();
-
-                (dir_path, module_name)
-            })
-            .map_err(|_| Error::Resolve(path))?;
+        if !fs::metadata(&resolved)?.is_dir() {
+            return Err(Error::NotADir(path.to_string()));
+        }
 
         let interpreter = self.app_handle.state::<State>().inner().0.lock().unwrap();
-        interpreter.import(&dir_path, &module_name)
+        let path = &resolved.to_string_lossy();
+        interpreter.add_to_sys_path(path)
+    }
+
+    pub fn import(&self, module_name: &str) -> Result<()> {
+        let interpreter = self.app_handle.state::<State>().inner().0.lock().unwrap();
+        interpreter.import(module_name)
     }
 
     pub fn call_function(
@@ -71,6 +70,7 @@ impl<R: Runtime, T: Manager<R>> crate::PythonExt<R> for T {
 pub fn init<R: Runtime>() -> TauriPlugin<R> {
     Builder::new("python")
         .invoke_handler(tauri::generate_handler![
+            commands::add_resource_path_to_sys_path,
             commands::import,
             commands::call_function
         ])
