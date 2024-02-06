@@ -7,6 +7,7 @@ license = "Apache-2.0 OR MIT"
 repository = "https://github.com/olivierlemasle/tauri-plugin-python"
 edition = "2021"
 rust-version = "1.70"
+links = "tauri-plugin-python"
 exclude = [
     "/.changes",
     "/.github",
@@ -20,8 +21,11 @@ exclude = [
     "/pnpm-lock.yaml",
 ]
 
+[build-dependencies]
+tauri-plugin = { version = "2.0.0-beta", features = ["build"] }
+
 [dependencies]
-tauri = { version = "2.0.0-alpha.21" }
+tauri = { version = "2.0.0-beta" }
 serde = "1.0"
 serde_json = "1.0"
 thiserror = "1.0"

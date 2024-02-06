@@ -1,0 +1,13 @@
+# Automatically generated - DO NOT EDIT!
+
+"$schema" = "../../schemas/schema.json"
+
+[[permission]]
+identifier = "allow-add-resource-path-to-sys-path"
+description = "Enables the add_resource_path_to_sys_path command without any pre-configured scope."
+commands.allow = ["add_resource_path_to_sys_path"]
+
+[[permission]]
+identifier = "deny-add-resource-path-to-sys-path"
+description = "Denies the add_resource_path_to_sys_path command without any pre-configured scope."
+commands.deny = ["add_resource_path_to_sys_path"]
