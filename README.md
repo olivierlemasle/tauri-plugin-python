@@ -6,6 +6,10 @@ Plugin to use [Python](https://www.python.org/) code from [Tauri](https://tauri.
 
 It uses [RustPython](https://rustpython.github.io/), a open-source Python 3 interpreter written in Rust.
 
+> ⚠️ Not compatible with Rust versions `> 1.75.0`.
+>
+> To use the most recent Rust versions, see branch `rustpython-next`, which uses an unreleased version of RustPython.
+
 ---
 
 #### License
