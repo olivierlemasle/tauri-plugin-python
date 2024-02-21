@@ -1,6 +1,7 @@
 {
-  "identifier": "main-capability",
-  "description": "example capability",
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "Capability for the main window",
   "windows": ["main"],
   "permissions": [
     "path:default",
@@ -12,6 +13,5 @@
     "python:allow-add-resource-path-to-sys-path",
     "python:allow-import",
     "python:allow-call-function"
-  ],
-  "platforms": ["linux", "macOS", "windows", "android", "iOS"]
+  ]
 }
