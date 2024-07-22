@@ -24,7 +24,7 @@ impl Interpreter {
     pub fn import(&self, module_name: &str) -> Result<()> {
         self.0.enter(|vm| {
             let module_name = PyStr::new_ref(module_name, &vm.ctx);
-            let _module = vm.import(&module_name, None, 0).to_err(vm)?;
+            let _module = vm.import(&module_name, 0).to_err(vm)?;
             Ok(())
         })
     }
@@ -42,7 +42,7 @@ impl Interpreter {
                 .collect();
 
             let module_name = PyStr::new_ref(module_name, &vm.ctx);
-            let module = vm.import(&module_name, None, 0).to_err(vm)?;
+            let module = vm.import(&module_name, 0).to_err(vm)?;
             let function_name = PyStr::new_ref(function_name, &vm.ctx);
             let function = module.get_attr(&function_name, vm).to_err(vm)?;
             let result = function.call(posargs, vm).to_err(vm)?;
