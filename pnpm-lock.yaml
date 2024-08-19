@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@tauri-apps/api':
-        specifier: 2.0.0-beta.15
-        version: 2.0.0-beta.15
+        specifier: 2.0.0-rc.2
+        version: 2.0.0-rc.2
       tslib:
         specifier: ^2.1.0
         version: 2.6.2
@@ -86,9 +86,8 @@ packages:
     peerDependencies:
       rollup: ^1.20.0||^2.0.0
 
-  '@tauri-apps/api@2.0.0-beta.15':
-    resolution: {integrity: sha512-H9w6iISmR+NvH4XuyCZB4zDN10tf9RFt6i/9JHEjaRhAowdAaJ+oiXq/3kedizNClHMtbTQ5j0oqDVPkZDAI8g==}
-    engines: {node: '>= 18.18', npm: '>= 6.6.0', yarn: '>= 1.19.1'}
+  '@tauri-apps/api@2.0.0-rc.2':
+    resolution: {integrity: sha512-qIJJ1gKkzpPmEmIGTpja6XhuCD8A+vEh/wKaO7TzbxKiws5w3E+Kg4sBtwrH85hjMyqT0SgAUVaUk9XS7FBg3g==}
 
   '@types/estree@0.0.39':
     resolution: {integrity: sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==}
@@ -234,18 +233,20 @@ snapshots:
 
   '@rollup/plugin-terser@0.4.4(rollup@2.75.6)':
     dependencies:
-      rollup: 2.75.6
       serialize-javascript: 6.0.2
       smob: 1.4.1
       terser: 5.27.0
+    optionalDependencies:
+      rollup: 2.75.6
 
   '@rollup/plugin-typescript@8.3.3(rollup@2.75.6)(tslib@2.6.2)(typescript@4.7.3)':
     dependencies:
       '@rollup/pluginutils': 3.1.0(rollup@2.75.6)
       resolve: 1.22.8
       rollup: 2.75.6
-      tslib: 2.6.2
       typescript: 4.7.3
+    optionalDependencies:
+      tslib: 2.6.2
 
   '@rollup/pluginutils@3.1.0(rollup@2.75.6)':
     dependencies:
@@ -254,7 +255,7 @@ snapshots:
       picomatch: 2.3.1
       rollup: 2.75.6
 
-  '@tauri-apps/api@2.0.0-beta.15': {}
+  '@tauri-apps/api@2.0.0-rc.2': {}
 
   '@types/estree@0.0.39': {}
 
