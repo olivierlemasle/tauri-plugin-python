@@ -295,46 +295,34 @@
       "type": "string",
       "oneOf": [
         {
-          "description": "allow-add-resource-path-to-sys-path -> Enables the add_resource_path_to_sys_path command without any pre-configured scope.",
+          "description": "Enables the add_resource_path_to_sys_path command without any pre-configured scope.",
           "type": "string",
-          "enum": [
-            "allow-add-resource-path-to-sys-path"
-          ]
+          "const": "allow-add-resource-path-to-sys-path"
         },
         {
-          "description": "deny-add-resource-path-to-sys-path -> Denies the add_resource_path_to_sys_path command without any pre-configured scope.",
+          "description": "Denies the add_resource_path_to_sys_path command without any pre-configured scope.",
           "type": "string",
-          "enum": [
-            "deny-add-resource-path-to-sys-path"
-          ]
+          "const": "deny-add-resource-path-to-sys-path"
         },
         {
-          "description": "allow-call-function -> Enables the call_function command without any pre-configured scope.",
+          "description": "Enables the call_function command without any pre-configured scope.",
           "type": "string",
-          "enum": [
-            "allow-call-function"
-          ]
+          "const": "allow-call-function"
         },
         {
-          "description": "deny-call-function -> Denies the call_function command without any pre-configured scope.",
+          "description": "Denies the call_function command without any pre-configured scope.",
           "type": "string",
-          "enum": [
-            "deny-call-function"
-          ]
+          "const": "deny-call-function"
         },
         {
-          "description": "allow-import -> Enables the import command without any pre-configured scope.",
+          "description": "Enables the import command without any pre-configured scope.",
           "type": "string",
-          "enum": [
-            "allow-import"
-          ]
+          "const": "allow-import"
         },
         {
-          "description": "deny-import -> Denies the import command without any pre-configured scope.",
+          "description": "Denies the import command without any pre-configured scope.",
           "type": "string",
-          "enum": [
-            "deny-import"
-          ]
+          "const": "deny-import"
         }
       ]
     }
