@@ -1,6 +1,6 @@
 {
   "productName": "tauri-plugin-python-example",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "identifier": "io.github.olivierlemasle.tauri-plugin-python.example",
   "app": {
     "security": {
