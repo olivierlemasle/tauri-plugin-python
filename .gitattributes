@@ -1,2 +1,3 @@
 *.config.js -linguist-detectable
 /examples/** -linguist-documentation
+/dist-js/** linguist-generated
