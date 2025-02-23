@@ -8,8 +8,11 @@ on:
     branches:
       - main
     paths-ignore:
-      - "webview-src/**"
-      - "webview-dist/**"
+      - "guest-js/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "rollup.config.js"
+      - "tsconfig.json"
       - "examples/**"
 
 jobs:
