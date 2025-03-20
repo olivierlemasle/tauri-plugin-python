@@ -27,9 +27,9 @@ impl<R: Runtime> Python<R> {
             .resolve(path, BaseDirectory::Resource)
             .map_err(|_| Error::Resolve(path.to_string()))?;
 
-        if !fs::metadata(&resolved)?.is_dir() {
+        /*if !fs::metadata(&resolved)?.is_dir() {
             return Err(Error::NotADir(path.to_string()));
-        }
+        }*/
 
         let interpreter = self.app_handle.state::<State>().inner().0.lock().unwrap();
         let path = &resolved.to_string_lossy();
