@@ -109,7 +109,7 @@ mod tests {
     fn import_wrong_path() {
         let interpreter = Interpreter::new();
         if let Err(Error::Python(msg)) = interpreter.import("example") {
-            assert!(msg.contains("ModuleNotFoundError"), "Got {}", msg);
+            assert!(msg.contains("ModuleNotFoundError"), "Got {msg}");
         } else {
             panic!("should return Error::Python");
         }
@@ -120,7 +120,7 @@ mod tests {
         let interpreter = Interpreter::new();
         interpreter.add_to_sys_path("test_assets")?;
         if let Err(Error::Python(msg)) = interpreter.import("foo") {
-            assert!(msg.contains("ModuleNotFoundError"), "Got {}", msg);
+            assert!(msg.contains("ModuleNotFoundError"), "Got {msg}");
             Ok(())
         } else {
             panic!("should return Error::Python");

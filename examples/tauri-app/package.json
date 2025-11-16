@@ -11,18 +11,18 @@
     "tauri": "tauri"
   },
   "dependencies": {
-    "@tauri-apps/api": ">=2.2.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "tauri-plugin-python-api": "file:../../"
+    "@tauri-apps/api": "^2.9.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "tauri-plugin-python-api": "file:../.."
   },
   "devDependencies": {
-    "@tauri-apps/cli": ">=2.2.7",
-    "@types/react": "^19.0.10",
-    "@types/react-dom": "^19.0.4",
-    "@vitejs/plugin-react": "^4.3.4",
-    "typescript": "^5.7.3",
-    "vite": "^6.1.1"
+    "@tauri-apps/cli": "^2.9.4",
+    "@types/react": "^19.2.5",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^4.7.0",
+    "typescript": "^5.9.3",
+    "vite": "^6.4.1"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
