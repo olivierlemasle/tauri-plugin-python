@@ -7,12 +7,10 @@ use tauri::{
 use std::{fs, sync::Mutex};
 
 pub use error::{Error, Result};
-pub use models::*;
 use python::*;
 
 mod commands;
 mod error;
-mod models;
 mod python;
 
 pub struct Python<R: Runtime> {
